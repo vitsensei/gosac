@@ -9,8 +9,7 @@ import (
 func main() {
 	cloud := examples.CreateRandomCloud(100)
 	r, _ := ransac.NewRansac(1000, 0.5, 10, 2)
-	line := examples.Line{}
-	r.SetModel(&line)
+	r.SetModel(&examples.Line{})
 	r.SetPopulation(cloud)
 
 	bestLine, loss := r.Run()
@@ -18,5 +17,8 @@ func main() {
 	fmt.Println("with loss: ", loss)
 
 	cloud.ToFile("cloud.csv")
-	bestLine.ToFile("line.csv")
+	line, ok := bestLine.(*examples.Line)
+	if ok {
+		line.ToFile("line.csv")
+	}
 }

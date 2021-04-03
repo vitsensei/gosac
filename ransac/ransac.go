@@ -21,7 +21,6 @@ type Model interface {
 	FitData(p Population, ind []int) // Take in a set of data and fit the model
 	SingleLoss(p Population, ind int) float64
 	Loss(p Population, ind []int) float64 // Take in one data point and calculate the loss
-	ToFile(path string)
 	Clone() Model
 }
 
